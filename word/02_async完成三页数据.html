@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<script src="../js/jquery.min.js"></script>
+<script>
+	//控制异步调用的顺序
+	/* function f1(){
+		new Promise((resovle)={
+			console.log("f1");
+			resovle("res");
+		})
+	}
+	function f2(){
+		new Promise((resovle)={
+			console.log("f1");
+			resovle("res");
+		})
+	}
+	function f3(){
+		new Promise((resovle)={
+			console.log("f1");
+			resovle("res");
+		})
+	}
+	
+	async function run(){
+		await f1();
+		await f2();
+		await f3();
+	} */
+	
+	function getData(index){
+		return new Promise((resovle)=>{
+			//异步请求，获取数据
+			$.getJSON('../json/0'+index+'.json',
+				(res)=>{
+					for ( var v of res.matchedProducts){
+						document.write(v.collection_num+":"+v.pro_title+"<br/>");
+					}
+					resovle()
+					}
+			)
+		})
+	}
+	
+	async function run(page){
+		for(var i=1;i<=page;i++){
+			await getData(i)
+		}
+	}
+	
+	run(3)
+	
+	
+	
+</script>

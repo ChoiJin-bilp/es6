@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth</title>
+    <style>
+        .win {
+            width: 200px;
+            height: 100px;
+            background: chartreuse;
+            border-radius: 10px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #realy {
+            width: 80px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            height: 33px;
+            line-height: 33px;
+            padding: 0 15px;
+            font-size: 15px;
+            color: white;
+            text-decoration: none;
+            text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+            border: 2px solid;
+            border-radius: 7px;
+            outline: 0;
+            -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+            background: rgb(24, 201, 127);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="win">
+        <div>请输入密码</div>
+        <input class="wininput" type="text" id="num" value="12345612">
+        <div id="realy">确认</div>
+    </div>
+</body>
+<script>
+    var btn = document.getElementById("realy");
+    // 第一种 通过点击事件
+    btn.onclick = function () {
+        var numList = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [2, 5, 6, 6, 4, 2, 4],
+            [3, 5, 6, 6, 4, 2, 4],
+            [4, 5, 6, 6, 4, 2, 4],
+            [5, 5, 6, 6, 4, 2, 4],
+        ]
+        var num = document.getElementById('num').value
+        if (num != '' && num.length <= 8 && num.length >= 7) {
+            var arr = num.split('')
+            if (num.length == 8) {
+                arr[6] = arr[6] + arr[7]
+                arr.pop()
+            }
+            if (arr[6] > 14) {
+                alert("请输入正确密码")
+                return;
+            }
+            arr = arr.map(Number)
+            for (let i = 0; i < numList.length; i++) {
+                var bitch = numList[i];
+                var typelist = []
+                var arrlist = num.split('')
+                if (num.length == 8) {
+                    arrlist[6] = arrlist[6] + arrlist[7]
+                    arrlist.pop()
+                }
+                if (arrlist[6] > 14) {
+                    alert("请输入正确密码")
+                    return;
+                }
+                arrlist = arrlist.map(Number)
+
+                for (var k=0;k<6;k++) {
+                    var syt =true
+                    if (bitch[6] == arrlist[6]&&syt) {
+                    var firstStep = true;
+                    bitch.pop() 
+                    var syt =false
+                }
+                    var type = arrlist.includes(bitch[k])
+                    if (type) {
+                        for (var j = 0; j < arrlist.length; j++) {
+                            if (bitch[k] == arrlist[j]) {
+                                arrlist.splice(j, 1)
+                            }
+                        }
+                        typelist.push(type)
+                    }
+                    
+                    if (k == 5) {
+                        if(firstStep){
+                            if(typelist[0]){
+                                if(typelist[1]){
+                                    if(typelist[2]){
+                                        if(typelist[3]){
+                                            if(typelist[4]){
+                                                if(typelist[5]){
+                                                    console.log("恭喜1")
+                                                    break;
+                                                }
+                                                console.log("恭喜3")
+                                                break;
+                                            }
+                                            console.log("恭喜4")
+                                                break;
+                                        }
+                                        console.log("恭喜5")
+                                                break;
+                                    }
+                                    console.log("恭喜6")
+                                                break;
+                                }
+                                console.log("恭喜6")
+                                                break;
+                            }
+                            console.log("恭喜6")
+                                                break;
+                        }else if(typelist[0]){
+                            if(typelist[2]){
+                                if(typelist[3]){
+                                    if(typelist[4]){
+                                        if(typelist[5]){
+                                            console.log("恭喜2")
+                                                break;
+                                        }
+                                        console.log("恭喜4")
+                                                break;
+                                    }
+                                    console.log("恭喜5")
+                                                break;
+                                }
+                                console.log("恭喜6")
+                                                break;
+                            }
+                        }else{
+                            console.log("很遗憾！")
+                                                break;
+                        }
+                    }
+                }
+            }
+        } else {
+            alert("请输入正确密码")
+        }
+    }
+</script>
+
+</html>

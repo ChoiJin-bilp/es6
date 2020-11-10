@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#list{width: 600px; min-height: 100px; border:2px dotted blue;}
+		</style>
+	</head>
+	<body>
+		<h2>旅游景点列表 一共有三页，按顺序显示</h2>
+		<ul id="list"></ul>
+		
+		<script src="./js/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			//相当于 window.onload ,但是 比window.onload要快， 因为$(function(){}) 只需要document加载就可以运行里面的代码了
+			$(function(){
+				//获取数据
+				//getJSON  第一页
+				$.getJSON("./json/01.json",function(res){
+					console.log(res);
+					//渲染
+					var data = res.matchedProducts;
+					for(var i = 0;i < data.length;i++){
+						let oli = $(`<li>序号：${data[i].collection_num} -- 标题：${data[i].pro_title}</li>`);
+						//将li添加到 ul 
+						$('#list').append(oli);
+					}
+					
+					//第二页数据
+					$.getJSON("./json/02.json",function(res){
+						console.log(res);
+						//渲染
+						var data = res.matchedProducts;
+						for(var i = 0;i < data.length;i++){
+							let oli = $(`<li>序号：${data[i].collection_num} -- 标题：${data[i].pro_title}</li>`);
+							//将li添加到 ul 
+							$('#list').append(oli);
+						}
+						
+						//第三页数据
+						$.getJSON("./json/03.json",function(res){
+							console.log(res);
+							//渲染
+							var data = res.matchedProducts;
+							for(var i = 0;i < data.length;i++){
+								let oli = $(`<li>序号：${data[i].collection_num} -- 标题：${data[i].pro_title}</li>`);
+								//将li添加到 ul 
+								$('#list').append(oli);
+							}
+						})
+					})
+					
+				})
+				
+				
+				
+				
+				//注意：顺序问题解决了，但是 代码很丑，有回调地狱问题
+				//解决的方法有三种：promise  ,async  await   ,generator
+				
+			})
+		</script>
+		
+	</body>
+</html>

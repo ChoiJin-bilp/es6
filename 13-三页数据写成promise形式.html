@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#list{width: 600px; min-height: 100px; border:2px dotted blue;}
+		</style>
+	</head>
+	<body>
+		<h2>旅游景点列表 一共有三页，按顺序显示</h2>
+		<ul id="list"></ul>
+		
+		<script src="./js/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				function getJson(){
+					//创建promise对象
+					var p = new Promise(function(resolve,reject){
+						//异步数据ajax调用
+						$.getJSON('./json/01.json',function(res){
+							//将数据使用 resolve带回
+							resolve(res);
+						});
+					});
+					//promise 对象需要返回
+					return p;
+				}
+				
+				//调用 promise  获取异步数据的函数
+				getJson().then(function(res){
+					console.log(res);
+					var data = res.matchedProducts;
+					for(var i = 0;i < data.length;i++){
+						let oli = $(`<li>序号：${data[i].collection_num} -- 标题：${data[i].pro_title}</li>`);
+						//将li添加到 ul 
+						$('#list').append(oli);
+					}
+				})
+			})
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var num1 = 23;
+			var num2 = 50;
+			
+			//console.log(num1,num2);
+			//console.log(num1);
+			//console.log(num2);
+			
+			
+			//扩展运算符 ...   ,将一个数组转为用逗号分割的参数序列
+			
+			console.log([1,2,3]);//数组  [1,2,3]
+			
+			console.log(...[1,2,3]);//   解析乘数值型数据 1 2 3 
+			
+			console.log(1,...[2,3,4],5,6);// 1 2 3 4 5 6
+			
+			//扩展运算符的使用
+			//1.函数调用时使用扩展运算符
+			// 对数组追加元素  [1,2,3]  [7,8]
+			//调用函数时，多个参数被  ...items接收，这种写法叫做  reset arguments
+			function push(array,...items){
+				array.push(...items);
+				return array;
+			}
+			var result = push([3,4,5],23,56,5,7,8,9);
+			console.log(result);//[3,4,5,23,56,5,7,8,9]
+			
+			//2.可以用于替代数组的apply方法
+			//作用： 改变指针指向 ，
+			//apply ；是使用数组的形式传的  
+			//call： 传的参数 是一个个传的
+			//bind：改变this 的指向
+			
+			//https://www.runoob.com/w3cnote/js-call-apply-bind.html
+			//求最大值
+			console.log(Math.max(2,9,4,6,7,0));//9
+			//需求是给数组求最大值
+			console.log(Math.max([2,9,4,5,8,5]));//NaN
+			
+			//使用  ...解决这个问题
+			console.log(Math.max(...[2,9,6,4,7]));
+			
+			//call ,apply
+			console.log(Math.max.apply(null,[2,8,6,4,7]));
+			
+			//3.用于数组连接  concat
+			var arr1 = [1,2,3];
+			var arr2 = [4,5,6];
+			arr1.push(...arr2);
+			console.log(arr1);
+			
+			//4.扩展运算符和解构一起使用
+			var [first,...rest] = [1,2,3,4,5,6];
+			console.log(first);//1
+			console.log(rest);//2,3,4,5,6
+			
+			var [first1,...rest1] = ["foo"];
+			console.log(first1);//foo
+			console.log(rest1);//[]
+			
+			//5.扩展运算字符串转数组
+			console.log('hello');
+			console.log([...'hello']);
+			
+			//6.map   
+			
+			
+			//7.generator中使用
+			
+			
+		</script>
+	</body>
+</html>

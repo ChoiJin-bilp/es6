@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{width: 100px; height:100px; background: blue;}
+		</style>
+	</head>
+	<body>
+		<div id = "box">div</div>
+		<ul>
+			<li>0</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			
+		</ul>
+		
+		<script type="text/javascript">
+			//需求：每点击一次，i自动加一
+			// function add(){
+			// 	var i = 0;
+			// 	var oDiv = document.getElementById('box');
+			// 	oDiv.onclick = function(){
+			// 		i++;
+			// 		console.log(i);
+			// 	}
+			// }
+			// add();
+			
+			//需求：点击li时，打印下标
+			// function show(){
+			// 	var aLi = document.getElementsByTagName('li');
+			// 	for(var i = 0;i < aLi.length;i++){
+			// 		aLi[i].onclick = function(){
+			// 			console.log(i);//5;因为 我们是循环绑定事件，循环绑定完之后，i的值已经是5了，所以在点击触发函数时，i的值都是5
+			// 		}
+			// 	}
+			// }
+			// show();
+			
+			//属性方式解决
+			// function show(){
+			// 	var aLi = document.getElementsByTagName('li');
+			// 	for(var i = 0;i < aLi.length;i++){
+			// 		aLi[i].index = i;
+			// 		aLi[i].onclick = function(){
+			// 			console.log(this.index);//
+			// 		}
+			// 	}
+			// }
+			// show();
+			
+			//使用闭包可以解决以上问题
+			
+			//闭包是什么呢？
+			// var num = 1;
+			// function ff1(){
+			// 	console.log(num);//1
+			// }
+			// ff1();
+			//作用域链：一般我们定义变量都在自己的作用域中定义，但如果自己的作用域中没有该变量的定义，
+			//我们就往父级作用域去寻找，直至找到全局作用域，如果这个变量的定义找到了，就表示这个变量定义了；如果没找到就说明这个变量没定义
+			//这种向上级作用域查找的过程就叫做作用域链
+			// var n1 = 5;
+			// function num(){
+			// 	var n2 = 10;
+			// 	function num2(){
+			// 		var n3 = 20;
+			// 		console.log(n1+n2+n3);//35
+			// 	}
+			// 	num2();
+			// }
+			// num();
+			
+			// var num2 = 5;//定义的是全局变量，从js开始到js结束
+			// function ss(){
+			// 	console.log(num2);//undefined，因为 变量的定义会有变量提升或叫做变量的预加载的功能
+			// 	var num2 = 10;//定义的是局部变量，作用域范围是从函数开始到函数结束
+			// 	console.log(num2);//10
+			// }
+			// ss();
+			// console.log(num2);//5
+			
+			//闭包是什么呢？
+			// function ff2 (){
+			// 	var nn = 10;
+			// }
+			// ff2();
+			// console.log(nn);//nn is not defined  ，因为 函数外面是没办法使用函数里面的局部变量的
+			
+			
+			//闭包： 可以在函数外面使用函数里面的局部变量
+			//闭包的定义：在函数的外面使用了函数里面的局部变量，对于该函数内部的函数来说，叫做闭包
+			/*闭包的作用： 一般用于 插件封装，    */
+			/*闭包的优点： 避免了全局污染*/
+			/*闭包的缺点： 1.变量常驻内存，会产生内存泄漏；请谨慎使用*/
+			/*
+			内存泄漏的问题，什么情况下产生：
+			1.闭包
+			2.没有结束的递归
+			3.没有结束的循环
+			4.没有结束掉的定时器
+			5.没有结束的事件绑定
+			*/
+		   //闭包如果产生了内存泄漏，怎样解决的，手动将 该闭包的变量赋值为 undefined
+			//闭包的写法
+			// function outer(){
+			// 	var num1 = 22;//函数里面的局部变量
+			// 	function inner(){
+			// 		num1++;
+			// 		console.log(num1);//作用域会永驻内存
+			// 	}
+			// 	return inner;//将函数作为了返回值
+			// }
+			
+			// var out = outer();
+			// out();//23
+			// out();//24
+			// out();//25
+			
+			//闭包解决以上问题
+			//需求：点击li时，打印下标
+			// function show(){
+			// 	var aLi = document.getElementsByTagName('li');
+			// 	for(var i = 0;i < aLi.length;i++){
+			// 		(function(){//函数里面的自执行函数就实现了闭包的功能
+			// 			var _i = i;
+			// 			aLi[i].onclick = function(){
+			// 				console.log(_i);//5;因为 我们是循环绑定事件，循环绑定完之后，i的值已经是5了，所以在点击触发函数时，i的值都是5
+			// 			}
+			// 		})()
+					
+			// 	}
+			// }
+			// show();
+			
+			// function show(){
+			// 	var aLi = document.getElementsByTagName('li');
+			// 	for(var i = 0;i < aLi.length;i++){
+			// 		function inner(){//函数里面的自执行函数就实现了闭包的功能
+			// 			var _i = i;
+			// 			aLi[i].onclick = function(){
+			// 				console.log(_i);//5;因为 我们是循环绑定事件，循环绑定完之后，i的值已经是5了，所以在点击触发函数时，i的值都是5
+			// 			}
+			// 		}
+			// 		inner();
+			// 	}
+			// }
+			// show();
+			
+			function show(){
+				var aLi = document.getElementsByTagName('li');
+				for(var i = 0;i < aLi.length;i++){
+					(function(_i){//函数里面的自执行函数就实现了闭包的功能
+						aLi[i].onclick = function(){
+							console.log(_i);//5;因为 我们是循环绑定事件，循环绑定完之后，i的值已经是5了，所以在点击触发函数时，i的值都是5
+						}
+					})(i);
+					
+				}
+			}
+			show();
+			
+			
+			
+			//js 垃圾回收机制？
+			//https://www.cnblogs.com/sunhuahuaa/p/7655587.html
+		</script>
+	</body>
+</html>

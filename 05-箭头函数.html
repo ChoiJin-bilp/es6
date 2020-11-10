@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>箭头函数</title>
+		<style type="text/css">
+			.box{width: 200px; height: 200px; border:1px solid red;}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="box"></div>
+		<script type="text/javascript">
+			//箭头函数es6对函数的定义的一种语法糖，
+			/*作用：
+			1.可以写更少的代码来完成函数
+			2.可以保留this的指向 ****
+			*/
+		   //一.箭头函数的写法
+			//es5  函数
+			function test (i){
+				return i+1;
+			}
+			var num = test(1);
+			console.log(num);
+			
+			//将上面的函数写成es6的箭头函数的写法
+			//参数需要用 小括号括起来，如果函数体只有一句话，我们可以省略 大括号和return语句；两句话及以上，就不可以省略
+			let num1 = (i) => i+1;
+			console.log(num1(1));
+			
+			//函数体有两句话
+			function add(x,y){
+				x++;
+				y++;
+				return x+y;
+			}
+			console.log(add(5,10));//17
+			
+			//将以上代码更改为es6的语法,注意：函数体有两句话以上，需要 加大括号和 return
+			let add1 = (x,y) => {x++; y++; return x+y;}
+			console.log(add1(1,2));
+			
+			//二.箭头函数可以保留this指向的实例
+			// var cat = {
+			// 	live:9,
+			// 	jumps:function(){
+			// 		console.log(this);//cat
+			// 		this.live--;
+			// 	}
+			// }
+			// cat.jumps();
+			// cat.jumps();
+			// console.log(cat.live);//7
+			
+			
+			var cat = {
+				live:9,
+				jumps:()=>{//箭头函数会保留this的指向
+					console.log(this);//window
+					this.live--;
+				}
+			}
+			cat.jumps();
+			cat.jumps();
+			console.log(cat.live);//9
+			
+			//箭头实例：
+			//需求：点击方块，延时2秒，使背景变为蓝色
+			// var oBox = document.getElementById('box');
+			// oBox.onclick = function(){
+			// 	window.setTimeout(function(){
+			// 		console.log(this);//因为使用了延时器，所以，this现在是指向window的，而window是没有style的属性的
+			// 		this.style.background = 'blue';
+			// 	},2000);
+				
+			// }
+			
+			//以上问题使用箭头函数来解决
+			var oBox = document.getElementById('box');
+			oBox.onclick = function(){
+				console.log(this);//oBox
+				
+				window.setTimeout(()=>{
+					console.log(this);//因为使用了箭头函数，所以，可以保留this 的指向 oBox
+					this.style.background = 'blue';
+				},2000);
+				
+			}
+			
+		</script>
+	</body>
+</html>

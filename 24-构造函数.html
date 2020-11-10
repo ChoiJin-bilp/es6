@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//js原生代码中，构造函数是模拟的，作用 ：对类进行初始化操作，而这个类创建时，构造函数自动执行
+			
+			//创建人类
+			function createPerson(name,sex){
+				this.name = name;
+				this.sex = sex;
+			}
+			//追加方法和属性
+			//prototype 叫做原型，作用：可以给原有的类扩展方法和属性
+			createPerson.prototype.draw = function(){
+				console.log(this.name + "正在画画");
+			}
+			createPerson.prototype.age = 20;
+			
+			//实例化
+			var p1 = new createPerson("如花","男");
+			console.log(p1.name);
+			p1.draw();
+			console.log(p1.age);
+			
+			var p2 = new createPerson("似玉","女");
+			console.log(p2.name);
+			p2.draw();
+			console.log(p2.age);
+		</script>
+	</body>
+</html>

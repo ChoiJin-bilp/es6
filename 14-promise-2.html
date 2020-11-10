@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//promise  三种状态：进行中pending    成功reaolve    失败reject
+			//primise 的缺点：1.无法中途取消
+			//2.没有回调函数会报错
+			//3.在pending状态时，没办法确定是刚开始还是已经要结束
+			//4.每一次只能发送一个异步的值，不能发送一组值
+			//一.基础
+			// function getObj(){
+			// 	let p = new Promise(function(resolve,reject){
+			// 		setTimeout(function(){
+			// 			console.log("延时器开始执行了");
+			// 			resolve("成功的回调带出的数据");
+			// 			//失败
+			// 			//reject("我失败了");
+			// 		},2000);
+			// 	});
+			// 	return p;
+			// }
+			// getObj().then(function(res){//成功
+			// 	console.log(res);
+			// },function(e){//失败
+			// 	console.log(e);
+			// })
+			
+			//二.有成功回调和失败回调的Promise
+			//成功和失败永远只能执行一个分支
+			// function getObj(){
+			// 	var p = new Promise(function(resolve,reject){
+			// 		let num = true;
+			// 		setTimeout(function(){
+			// 			if(num){
+			// 				resolve("成功");
+			// 			}else{
+			// 				reject("失败");
+			// 			}
+			// 		},1000);
+					
+			// 	});
+			// 	return p;
+			// }
+			
+			// getObj().then(function(res){//res带回的是 resolve的值
+			// 	console.log("success");
+			// 	console.log(res);
+			// },function(err){//err带回的是reject的值
+			// 	console.log("fail");
+			// 	console.log(err);
+			// });
+			
+			//三.实例
+			//3.1
+			//需求：生成一个1-10的随机数，如果随机数大于5 就显示成功
+			// function getObj(){
+			// 	var p = new Promise(function(resolve,reject){
+			// 		//获取随机数
+			// 		var nn = Math.ceil(Math.random()*10) ;
+			// 		if(nn > 5){
+			// 			resolve("成功"+nn);
+			// 		}else{
+			// 			reject("失败"+nn);
+			// 		}
+					
+			// 	});
+			// 	return p;
+			// }
+			// getObj().then(function(res){
+			// 	console.log(res);
+			// },function(err){
+			// 	console.log(err);
+			// });
+			//console.log(Math.ceil(Math.random()*10)   );//1-10的随机数
+			
+			//需求：随机数调用多次可不可以？
+			//3.2 
+			// function getObj(page){
+			// 	var p = new Promise(function(resolve,reject){
+			// 		setTimeout(function(){
+			// 			var nn = Math.ceil(Math.random()*10);
+			// 			if(nn > 5){
+			// 				resolve("成功：" + nn + "|页码："+page);
+			// 			}else{
+			// 				reject("失败：" + nn + "|页码："+page);
+			// 			}
+			// 		},1000);
+			// 	})
+			// 	return p;
+			// }
+			
+			// getObj(1).then(function(res){  //1表示的是第一页
+			// 	console.log(res);
+			// 	return getObj(2);//2 表示的是第二页
+			// },function(err){
+			// 	console.log(err);
+			// }).then(function(res){
+			// 	console.log(res);
+			// 	return getObj(3);
+			// },function(err){
+			// 	console.log(err);
+			// }).then(function(res){
+			// 	console.log(res);
+			// },function(err){
+			// 	console.log(err);
+			// });
+			
+			//需求： 如果失败了，我们后面的不执行  
+			//3.3 catch   如果失败了，需要终止promise的调用，可以捕获异常
+			
+			// function getObj(page){
+			// 	var p = new Promise(function(resolve,reject){
+			// 		setTimeout(function(){
+			// 			var nn = Math.ceil(Math.random()*10);
+			// 			if(nn > 5){
+			// 				resolve("成功：" + nn + "|页码："+page);
+			// 			}else{
+			// 				reject("失败：" + nn + "|页码："+page);
+			// 			}
+			// 		},1000);
+			// 	})
+			// 	return p;
+			// }
+			// getObj(1).then(function(res){
+			// 	console.log(res);
+			// 	x+2;
+			// },function(err){
+			// 	console.log(err);
+			// }).catch(function(e){//捕获异常
+			// 	console.log(e);
+			// });
+			
+			
+			
+			//多次调用的捕获异常
+			// function getObj(page){
+			// 	var p = new Promise(function(resolve,reject){
+			// 		setTimeout(function(){
+			// 			var nn = Math.ceil(Math.random()*10);
+			// 			if(nn > 5){
+			// 				resolve("成功：" + nn + "|页码："+page);
+			// 			}else{
+			// 				reject("失败：" + nn + "|页码："+page);
+			// 			}
+			// 		},1000);
+			// 	})
+			// 	return p;
+			// }
+			
+			// getObj(1).then(function(res){  //1表示的是第一页
+			// 	console.log(res);
+			// 	return getObj(2);//2 表示的是第二页
+			// }).then(function(res){
+			// 	console.log(res);
+			// 	return getObj(3);
+			// }).then(function(res){
+			// 	console.log(res);
+			// }).catch(function(e){//catch 的回调函数中的e 接收 reject的值；而且捕获异常之后，程序不会继续执行
+				
+			// 	console.log(e);
+			// });
+			
+			
+			//3.4 finally  结果或最后怎样  , finally 里面的语句是必定可以运行的
+			// try... catch...finally
+			function getObj(page){
+				var p = new Promise(function(resolve,reject){
+					setTimeout(function(){
+						var nn = Math.ceil(Math.random()*10);
+						if(nn > 5){
+							resolve("成功：" + nn + "|页码："+page);
+						}else{
+							reject("失败：" + nn + "|页码："+page);
+						}
+					},1000);
+				})
+				return p;
+			}
+			
+			getObj(1).then(function(res){  //1表示的是第一页
+				console.log(res);
+				return getObj(2);//2 表示的是第二页
+			}).then(function(res){
+				console.log(res);
+				return getObj(3);
+			}).then(function(res){
+				console.log(res);
+			}).catch(function(e){//catch 的回调函数中的e 接收 reject的值；而且捕获异常之后，程序不会继续执行
+				console.log(e);
+			}).finally(function(){
+				console.log("异步调用结束了");
+				
+			});
+			
+		</script>
+	</body>
+</html>

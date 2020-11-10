@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//async...await 语法糖  ，es7之后出来的解决异步回调地狱问题的方式，和promise 、generator 都有一定关系
+			
+			//async 表示异步，属于异步操作的关键字
+			
+			//1.实例
+			// async function hello(){  //async  表示异步函数
+			// 	return "hello async";
+			// }
+			// //console.log(hello());
+			
+			// //对于 async标识的函数，返回值永远都是  promise对象
+			// //对象中包含两个值，一个 是 resolve  一个是reject 
+			// //调用的时候需要使用  .then
+			// console.log(hello().then(function(res){
+			// 	console.log(res);
+			// }));
+			
+			//2.实例
+			// function testAwait(){
+			// 	let p = new Promise((resolve)=>{
+			// 		setTimeout(function(){
+			// 			console.log('await运行了');
+			// 			resolve('成功的传参');
+			// 		},5000);
+					
+					
+			// 	});
+			// 	return p;
+			// }
+			
+			// async function hello(){
+			// 	await testAwait();//等待...异步操作完成；  后面的语句再运行
+			// 	console.log("aaaaaaaaaaa");
+				
+			// }
+			// hello();
+			
+			//3.吃鸡的回调问题使用 async await 解决
+			//1.
+			function zhunbei(){
+				return new Promise((resolve)=>{
+					setTimeout(function(){
+						console.log("准备鸡肉，洗好，切好");
+						resolve();
+					},2000);
+				})
+			}
+			//2
+			function chaoji(){
+				return new Promise((resolve)=>{
+					setTimeout(function(){
+						console.log("炒鸡");
+						resolve();
+					},2000);
+				})	
+			}
+			//3
+			function dunji(){
+				return new Promise((resolve)=>{
+					setTimeout(function(){
+						console.log("炖鸡");
+						resolve();
+					},2000);
+				})	
+			}
+			//4
+			function jiatiaoliao(){
+				return new Promise((resolve)=>{
+				setTimeout(function(){
+					console.log("加入调料");
+					resolve();
+				},2000);
+				})
+			}
+			//5
+			function chiji(){
+				return new Promise((resolve)=>{
+				setTimeout(function(){
+					console.log("上盘吃鸡");
+					resolve();
+				},2000);
+				})
+			}
+			
+			async function task(){
+				await zhunbei();
+				await chaoji();
+				await dunji();
+				await jiatiaoliao();
+				await chiji();
+			}
+			
+			task();
+			/*
+			async await  和  promise  和  generator的区别：
+			相比较而言 async await  语法最简单，但需要 和 promise配对使用
+			对于generator ，语法最麻烦，一般用在  redux-saga  ，generator 还可以作为迭代器
+			　　async/await是写异步代码的新方式，以前的方法有回调函数和Promise。
+			　　async/await是基于Promise实现的，它不能用于普通的回调函数。
+			　　async/await与Promise一样，是非阻塞的。
+			　　async/await使得异步代码看起来像同步代码，这正是它的魔力所在。
+			*/
+		   //作业 ：将 三页数据，先使用 promise 的方式调用渲染；再使用 async...await的写法再练习一遍
+		</script>
+	</body>
+</html>

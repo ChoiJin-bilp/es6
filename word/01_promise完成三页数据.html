@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+	// new Promise(function(resolve,reject){
+	// 	// resolve("成功返回的数据");
+	// 	reject("失败的数据")
+	// }).then(
+	// 	(res)=>console.log(res),
+	// 	(res)=>console.log(res),
+	// );
+	var index = 1;
+	
+	function getData(page){
+		new Promise(
+			(resolve)=>{
+				$.getJSON('../json/0'+index+'.json',
+					(res)=>resolve(res)
+				)
+			}
+		).then(
+			(res)=>{
+				console.log("数据展示")
+				console.log(res);
+				
+				for ( var v of res.matchedProducts){
+					document.write(v.collection_num+":"+v.pro_title+"<br/>");
+				}
+				index++;
+				if(index<=page){
+					getData(page);
+				}
+			}
+		)
+	}
+	
+	//调用
+	getData(3);
+	
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 异步操作  ， 异步线程、轮询https://segmentfault.com/a/1190000019291976
+			//宏任务和微任务 ，https://www.cnblogs.com/ckAng/p/11133643.html
+			//https://www.cnblogs.com/edwardwzw/p/12033935.html
+			//https://www.jianshu.com/p/9060fcd27cd7
+			async function async1() {
+			    console.log("async1 start");
+			    await async2();
+			    console.log("async1 end");
+			    return 'async return';
+			}
+			async function async2() {
+			    console.log("async2");
+			}
+			console.log("script start");
+			setTimeout(function() {
+			    console.log("setTimeout");
+			}, 0);
+			async1().then(function (message) { console.log(message) });
+			new Promise(function(resolve) {
+			    console.log("promise1");
+			    resolve();
+			}).then(function() {
+			    console.log("promise2");
+			});
+			console.log("script end");
+		</script>
+	</body>
+</html>

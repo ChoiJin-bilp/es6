@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//设计模式   ： mvc模式、mvvm模式、工厂模式、观察者模式、单例模式
+			
+			//工厂是一种设计模式
+			function createPerson(name,sex){
+				//1.原料
+				var obj  =new Object();
+				//2.加工  --- 赋值
+				obj.name = name;
+				obj.sex = sex;
+				//3.方法
+				obj.showName = function(){
+					console.log("人的名称："+ this.name);
+				}
+				obj.showSex = function(){
+					console.log("人的性别："+ this.sex);
+				}
+				
+				//4.输出
+				return obj;
+				
+			}
+			
+			//工厂模式的使用
+			var p1 = createPerson("如花","男");
+			//使用
+			p1.showName();
+			p1.showSex();
+			
+			var p2 = createPerson("大刚","女");
+			p2.showName();
+			p2.showSex();
+			
+			/*
+			工厂方法的特点：
+			1.减少了代码，让用户更关心，对于这个类的实例后的输入输出
+			2.缺点：没有使用 new ；每个对象都有自己的函数，浪费资源
+			*/
+		</script>
+		
+	</body>
+</html>

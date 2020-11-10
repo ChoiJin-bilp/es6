@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//创建 人类的对象   构造函数
+			function createPerson(name,sex){
+				this.name = name;
+				this.sex = sex;
+				this.showName = function(){
+					console.log('名字：'+this.name);
+				
+				}
+				this.showSex = function(){
+					console.log("性别："+this.sex);
+				}
+			}
+			
+			//实例化这个类
+			var p1 = new createPerson("如花","男");
+			p1.showName();
+			p1.showSex();
+			
+			var p2 = new createPerson("似玉","女");
+			p2.showName();
+			p2.showSex();
+		</script>
+	</body>
+</html>

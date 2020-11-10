@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//定义父类
+			function Animal(name,color){
+				this.name = name;
+				this.color = color;
+				
+			}
+			//扩展方法
+			Animal.prototype.swimming = function(){
+				console.log(this.name + "在游泳");
+			} 
+			
+			//子类
+			function Dog(name){
+				this.name = name;
+				
+			}
+			//子类继承父类  ，使用原型的方式来继承
+			Dog.prototype = new Animal('萨摩耶');
+			
+			
+			//实例化
+			var dog1 = new Dog("萨摩耶");
+			console.log(dog1.name);
+			dog1.swimming();
+			
+			
+		</script>
+	</body>
+</html>

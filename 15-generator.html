@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//generator(生成器)    迭代器(循环)   ，解决异步回调地狱问题  
+			//generator  的使用， react   redux-saga    飞冰  、ant-design-pro
+			
+			/*
+			generator 是一个状态机，内部封装了多种状态，等着用户调用
+			generator 语法：
+			1.函数名前面需要加星号  
+			2.函数内部需要用 yield语法关键字
+			3.generator函数调用，需要使用 next 方法
+			
+			*/
+		   
+		   //一.generator 基础
+		   //1.实例
+		 //    function * hello(){
+			//    console.log("第一个生成器的实例");
+		 //    }
+			// hello().next();
+			
+			
+			// //2.yield  
+			// function * hello2(){
+			// 	yield "hello";
+			// 	yield "hi";
+			// 	return;
+			// }
+			// var h = hello2();
+			// console.log(h.next());//{value: "hello", done: false}  第一次调用，打印了第一个状态值
+			// console.log(h.next());//{value: "hi", done: false}第二次调用，打印了第二个状态值
+			// console.log(h.next());//{value: undefined, done: true}第三次调用，没有 状态值打印undefined 
+			//,并且done: true 表示 迭代器结束了
+			
+			//二.迭代器实例
+			//2.1
+			// function * hi(){
+			// 	yield "hello";
+			// 	yield "hi";
+			// 	yield "888";
+			// 	yield "aaa";
+			// 	return ;
+			// }
+			// var h = hi();
+			// for(var value of h){//for 循环的写法
+			// 	console.log(value );
+			// }
+			//说明 generator 是一个迭代器，如果迭代结束， 不会再输出 undefined
+			
+			//2.2
+			// function * gen(x,y){
+			// 	let z = yield x+y;
+			// 	console.log("z:"+z);
+			// 	let result = yield z * x;
+			// 	return result;
+			// }
+			// var g = gen(5,6);
+			// console.log(g.next());// {done: false,value: 11}
+			// console.log(g.next());// {done: false,value: NaN}
+			// 注意：问题是第一次的z的结果，并没有保存，所以第二次调用时时undefined,
+			
+			
+			//2.3 以上代码我想得出55的结果
+			// function * gen(x,y){
+			// 	let z = yield x+y;
+			// 	console.log("z:"+z);
+			// 	let result = yield z * x;
+			// 	return result;
+			// }
+			// var g = gen(5,6);
+			// console.log(g.next());// {done: false,value: 11}
+			// console.log(g.next(11));//next(11) 写死了，你也不确定第一次调用的结果一定是11
+			
+			
+			
+			// function * gen(x,y){
+			// 	let z = yield x+y;
+			// 	console.log("z:"+z);
+			// 	let result = yield z * x;
+			// 	return result;
+			// }
+			// var g = gen(5,6);
+			// //console.log(g.next());// {done: false,value: 11}
+			// var re = g.next();
+			// console.log(g.next(re.value));//55
+			
+			//2.4 return 的使用,可以结束迭代；在 return 之后的  yield都不再运行了
+			function * hi(){
+				yield "hello";
+				yield "hi";
+				yield "888";
+				yield "aaa";
+				return ;
+			}
+			var h = hi();
+			console.log(h.next());
+			console.log(h.next());
+			console.log(h.return());
+			console.log(h.next());
+			console.log(h.next());
+			console.log(h.next());
+			
+			
+			
+			
+			//三.解决 回调地狱问题
+			//例子：
+			//模拟地狱回调
+			// setTimeout(function(){
+			// 	console.log("准备鸡肉，洗好，切好");
+			// 	setTimeout(function(){
+			// 		console.log("炒鸡");
+			// 		setTimeout(function(){
+			// 			console.log(" 炖鸡");
+			// 			setTimeout(function(){
+			// 				console.log("加调料");
+			// 				setTimeout(function(){
+			// 					console.log("上盘，吃鸡");
+			// 				},1000);
+			// 			},3000);
+			// 		},4000);
+			// 	},2000);
+			// },2000)
+			
+			//使用generator 语法解决以上地狱回调问题
+			//准备工作
+			//1.
+			function zhunbei(success){
+				setTimeout(function(){
+					console.log("准备鸡肉，洗好，切好");
+					success();
+				},2000);
+			}
+			//2
+			function chaoji(success){
+				setTimeout(function(){
+					console.log("炒鸡");
+					success();
+				},2000);
+			}
+			//3
+			function dunji(success){
+				setTimeout(function(){
+					console.log("炖鸡");
+					success();
+				},2000);
+			}
+			//4
+			function jiatiaoliao(success){
+				setTimeout(function(){
+					console.log("加入调料");
+					success();
+				},2000);
+			}
+			//5
+			function chiji(success){
+				setTimeout(function(){
+					console.log("上盘吃鸡");
+					success();
+				},2000);
+			}
+			
+			//流程控制
+			function run(fn){
+				const gen = fn();
+				function next(){
+					const result = gen.next();
+					if(result.done){
+						return;//吃鸡流畅结束了
+					}else{
+						result.value(next);
+					}
+				}
+				next();
+			}
+			
+			
+			//工序
+			function * task(){
+				yield zhunbei;
+				yield chaoji;
+				yield dunji;
+				yield jiatiaoliao;
+				yield chiji;
+			}
+			
+			run(task);
+			
+		</script>
+	</body>
+</html>

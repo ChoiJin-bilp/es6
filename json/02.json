@@ -1,0 +1,70 @@
+
+{    
+	"matchedProducts":[
+        {
+            "collection_num": 6,
+            "seller_user_name": "修罗",
+            "amount": 33703,
+            "pro_pic_url": "https://pic.51houniao.com/4e7cffa9a1b74f7893028c9399506174.jpg",
+            "pro_title": "北欧三国，不一样的视觉盛宴",
+            "product_id": "c8812c30d516433dac8d32d68f4cfbaf",
+            "routing_data": 11,
+            "out_time": "按需定制",
+            "routing_nigth": 9,
+            "product_type": 1,
+            "country": "冰岛,瑞典,芬兰"
+        },
+        {
+            "collection_num": 7,
+            "seller_user_name": "修罗",
+            "amount": 33508,
+            "pro_pic_url": "https://pic.51houniao.com/82db72d858604f99a9f4f4107bb8d10f.jpg",
+            "pro_title": "中土世界，“最魔戒”之旅",
+            "product_id": "26c14e40fe4741dd8d6e42c883dc5d6c",
+            "routing_data": 15,
+            "out_time": "按需定制",
+            "routing_nigth": 12,
+            "product_type": 1,
+            "country": "新西兰"
+        },
+        {
+            "collection_num": 8,
+            "seller_user_name": "修罗",
+            "amount": 33374,
+            "pro_pic_url": "https://pic.51houniao.com/3c86fba8b69e4a508dbf591234ab6534.jpg",
+            "pro_title": "纳米比亚，最美的时光遇上你",
+            "product_id": "4c533d970e13452992be33b2e0cd58b3",
+            "routing_data": 12,
+            "out_time": "按需定制",
+            "routing_nigth": 10,
+            "product_type": 1,
+            "country": "纳米比亚"
+        },
+        {
+            "collection_num": 9,
+            "seller_user_name": "修罗",
+            "amount": 32937,
+            "pro_pic_url": "https://pic.51houniao.com/c47dc36234404e319f0e4b2f7dc52805.jpg",
+            "pro_title": "奢野肯尼亚，动物世界休闲行",
+            "product_id": "1537c1ba6e884f6abacc0263401b43c0",
+            "routing_data": 8,
+            "out_time": "按需定制",
+            "routing_nigth": 5,
+            "product_type": 1,
+            "country": "肯尼亚"
+        },
+        {
+            "collection_num": 10,
+            "seller_user_name": "修罗",
+            "amount": 32640,
+            "pro_pic_url": "https://pic.51houniao.com/5e7cffe7f77a4710b60494f0c254ade9.jpg",
+            "pro_title": "斐济，迷醉在这一片蔚蓝",
+            "product_id": "49f387399fb94f5eb9a06d899ae1e74b",
+            "routing_data": 8,
+            "out_time": "按需定制",
+            "routing_nigth": 6,
+            "product_type": 1,
+            "country": "斐济"
+        }
+	]
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<a><div>nihao</div></a>
+	</body>
+	<script type="text/javascript">
+		localStorage.setItem("test",1234567)
+		let test  = localStorage.getItem('test')
+		console.log(typeof test,test);
+		localStorage['name'] ='苏南'
+		console.log(localStorage['name'],test,new Date().getTime());
+		
+		//获取本地缓存
+		function setLocalStorage(key,value){
+			var curtime = new Date().getTime();//获取当前时间转化成JSON字符串序列
+			var valueDate = JSON.stringify({
+				value: value,
+				timer: curtime 
+			})
+			try{
+				localStorage.setItem(key,valueDate)
+			}catch(e){
+				if(isQuotaExceeded(e)){
+					console.log('Error:本地存储超过限制')
+					localStorage.clear()
+				}else{
+					console('Error:本地存储失败')
+				}
+			}
+		};
+		//解决兼容性问题
+		function isQuotaExceeded(e) {
+			var quotaExceeded = false;
+			if(e){
+				if(e.code){
+					switch(e.code){
+						case 22:
+							quotaExceeded = true;
+							break;
+						case 1014:
+							if(e.name == 'NS_ERROR_DOM_QUOTA_REACHED'){
+								quotaExceeded =true;
+							}
+							break;
+					}
+				}else if(e.number === -2147024882){
+					quotaExceeded =true;
+				}
+			}
+		};
+		//
+		// function getLocalStorage(key){
+		// 	var exp = 60*60*24 //一天的秒数
+		// 	if(localStorage.getItem(key)){
+		// 		var vals = localStorage.getItem(key);//获取本地存储
+		// 		var dataObj = JSON.parse(vals)//将字符串转化成JSON对象
+				
+		// 	}
+			
+		// }
+		
+		 function getLocalStorage(key) {
+		     var exp = 60 * 60 * 24; // 一天的秒数
+		     if(localStorage.getItem(key)) {
+		         var vals = localStorage.getItem(key); // 获取本地存储的值 
+		         var dataObj = JSON.parse(vals); // 将字符串转换成JSON对象
+		         // 如果(当前时间 - 存储的元素在创建时候设置的时间) > 过期时间 
+	         var isTimed = (new Date().getTime() - dataObj.timer) > exp;
+			 console.log(isTimed)
+		         if(isTimed) {
+		             console.log("存储已过期");
+		             localStorage.removeItem(key);
+		             return null;
+		         } else {
+		             var newValue = dataObj.val;
+		         }
+		         return newValue;
+		     } else {
+		         return null;
+		     }
+		 };
+		 
+		 setLocalStorage('name', 'hello, world');
+		 var localKey = getLocalStorage('name');
+		 console.log(localKey);
+	
+	
+		var arr = [
+			[{a:1}],
+			{a:2},
+			[	
+				{a:3},
+				{a:4},
+				[{a:5}],
+			]
+		]
+		function offer(arr){
+			if(arr.constructor == Array){
+				for(let i=0 ; i<arr.length;i++){
+					var sku = arr[i];
+					if(sku.constructor == Array){
+						for(let j = 0;j<sku.length;j++){
+							var sbu = sku[j];
+							if(sbu.constructor == Array){
+								for(let k = 0;k<sbu.length;k++){
+									var skr = sbu[k];
+								}
+							}else{
+								var sbu2 = sku[j];
+							}
+						}
+					}else{
+						var sku2 = arr[i]
+					}
+				}
+						return {sku2,skr,sbu2}
+			}
+		}
+		
+		var sky = []
+		sky.push(offer(arr).sku2)
+		sky.push(offer(arr).skr)
+		sky.push(offer(arr).sbu2)
+		console.log(sky)
+	</script>
+</html>

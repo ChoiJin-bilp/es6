@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//1.es6 中的 promise 解决 异步回调的地狱问题
+			//2.promise基础语法
+			function getObj(){
+				//创建 promise对象
+				//创建的promise对象的参数是一个回调函数，回调函数有两个参数，
+				//第一个参数 成功的回调 resolve
+				//第二个参数 失败的回调 reject
+				let p = new Promise(function(resolve,reject){
+					//模拟异步操作
+					setTimeout(function(){
+						console.log("延时器开始执行了");
+						//带出一个成功的回调数据
+						resolve("成功的回调带出的数据");
+						//失败
+						//reject("我失败了");
+					},2000);
+				});
+				//将 promise 对象返回
+				return p;
+			}
+			//函数调用
+			//getObj();
+			//问题：resolve 的数据并没有带出来
+			//需要使用 then 语法
+			//then 里面有两个参数 ，都是函数
+			/*第一个参数的函数接收的是 resolve 第二个参数的函数接收的书 reject*/
+		   //对于成功和失败只能接收到一个
+			getObj().then(function(res){//成功
+				console.log(res);
+			},function(e){//失败
+				console.log(e);
+			})
+			
+			//promise.all 解决多个异步操作的同步问题   什么时候必须用？
+			/*
+			当后面的异步操作必须用到前面的返回结果时 ，才适合使用
+			缺点：对于请求链，如果有一个返回错误，那么后面的都不执行
+			
+			*/
+			
+		</script>
+	</body>
+</html>

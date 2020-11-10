@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr  = [1,2,3];// 数组
+			console.log(arr.length);
+			
+			arr.push(5);
+			console.log(arr);
+			
+			arr.unshift(0);
+			console.log(arr);
+			
+			function show(){
+				console.log(this);//
+			}
+			
+			show();
+			
+			
+			arr.fn = function(){
+				console.log(this);//arr
+			}
+			arr.fn();
+			
+			var b = {};  //object 
+			b.name= "aaa";
+			b.fn = function(){
+				console.log(this);//b
+			}
+			
+			b.fn();
+			
+			
+			//typeof 没办法区分数组和对象     数组和 object 怎样区分
+			// console.log(typeof arr);//object
+			// console.log(typeof b);//object
+			
+			// 1.使用 constructor
+			// console.log(arr.constructor);//Array
+			// console.log(b.constructor);//Object
+			
+			//2.使用 instanceof
+			console.log(arr instanceof Array);// true
+			console.log(b instanceof Object);//true
+			
+			//3.Object.prototype.toString.call([]) 
+			console.log ( Object.prototype.toString.call(arr));// array
+			console.log ( Object.prototype.toString.call(b));//object
+				
+			//4.	使用 isArray来判断
+			console.log( Array.isArray(arr)) ;//true
+			console.log(Array.isArray(b));//false
+		</script>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//创建空对象
+			var obj = new Object(); 
+			//var obj1 = {};
+			
+			obj.aa = 123;
+			obj.show = function(){
+				console.log("这是obj的显示方法");
+			}
+			obj.aa = 'ni';
+			obj.show();
+			
+			//需求：给 obj 设置名字和性别
+			obj.name = "春华";
+			obj.sex = "男";
+			obj.showName = function(){
+				console.log(this.name);
+			}
+			obj.showSex = function(){
+				console.log(this.sex);
+			}
+			//调用 
+			obj.showName();
+			obj.showSex();
+			
+			var obj1 = new Object();
+			obj1.name = "花花";
+			obj1.sex = "女";
+			obj1.showName = function(){
+				console.log(this.name);
+			}
+			
+			obj1.showSex = function(){
+				console.log(this.sex);
+			}
+			
+			//调用 
+			obj1.showName();
+			obj1.showSex();
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<script src="./js/jquery.min.js"></script>
+<script type="text/javascript">
+	function getObj(page){
+		return new Promise(function(resolve,reject){
+			setTimeout(function(){
+				$.getJSON("./json/0"+page+".json",function(res){
+					resolve(res);
+					document.write(res.matchedProducts[0].collection_num);
+				})
+			});
+		})
+	}
+	getObj(1).then(function(res){
+		console.log(res);
+		document.write(res.matchedProducts[0].collection_num);
+		return getObj(2);
+	}) .then(function(res){
+		console.log(res);
+		document.write(res.matchedProducts[0].collection_num);
+		return getObj(3);
+	}).then(function(res){
+		console.log(res);
+		document.write(res.matchedProducts[0].collection_num);
+	}); 
+</script>

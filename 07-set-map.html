@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//es6的set；类型
+			//set是一种新的数据类型，是一种对象，特点：类似于数组，单里面没有重复的值
+			//作业：去重 3种以上方法实现
+			// new Object()  new Date()  new Array()  
+			//创建了一个set对象
+			let  myset = new Set();
+			[5,5,6,7,8,2,3,3,3,3,2,2].forEach(x=>myset.add(x));
+			console.log(myset);// 2,3,5,6,7,8  输出的是一个set对象，该对象里默认就会去重
+			
+			//定义set对象时直接赋值
+			let set = new Set([1,2,3,1,2,3,4,4,4,4,5,5,5]);
+			console.log(set);
+			
+			//将set对象转数组  ...
+			console.log([...set]);
+			
+			//es6  map  对象
+			//特点：相当于 object ，但是key值比较特殊，什么样的key值都可以接收
+			//创建了一个map对象
+			let m = new Map();
+			
+			let o = new Object();
+			
+			//给map对象添加数据  使用set
+			m.set("name","花儿");
+			m.set(12,"数字做key值");
+			m.set(o,"对象做key值");
+			m.set(12.5,"浮点数");
+			console.log(m);
+			
+			//获取map中的数据  使用 get
+			console.log(m.get('name'));
+			console.log(m.get(12));
+			console.log(m.get(o));
+			
+			//判断map中是否有对应的键名  has
+			if(m.has('name')){
+				console.log("有这个键名");
+			}else{
+				console.log("没有");
+			}
+			
+			//删除 map中的数据 delete  
+			m.delete('name');
+			
+			if(m.has('name')){
+				console.log("有这个键名");
+			}else{
+				console.log("没有");
+			}
+		</script>
+		
+	</body>
+</html>

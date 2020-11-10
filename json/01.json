@@ -1,0 +1,70 @@
+
+{    
+	"matchedProducts":[
+        {
+            "collection_num": 1,
+            "seller_user_name": "修罗",
+            "amount": 59330,
+            "pro_pic_url": "https://pic.51houniao.com/db336232f7e64305b5dc2739eba41e52.jpg",
+            "pro_title": "德国工业4.0研修之旅",
+            "product_id": "9ed72c03514047cfb407c39ef10ab9c8",
+            "routing_data": 14,
+            "out_time": "2018-09-03",
+            "routing_nigth": 11,
+            "product_type": 1,
+            "country": "德国"
+        },
+        {
+            "collection_num": 2,
+            "seller_user_name": "修罗",
+            "amount": 59280,
+            "pro_pic_url": "https://pic.51houniao.com/640d7eab0ae64f9495b176f9d967a641.jpg",
+            "pro_title": "历史会晤 美国名企名校考察",
+            "product_id": "07b9c502e17a44928baed452016fb108",
+            "routing_data": 10,
+            "out_time": "按需定制",
+            "routing_nigth": 8,
+            "product_type": 1,
+            "country": "美国"
+        },
+        {
+            "collection_num": 3,
+            "seller_user_name": "修罗",
+            "amount": 49260,
+            "pro_pic_url": "https://pic.51houniao.com/b59828dde3634b66b16554bf8e932dfc.jpg",
+            "pro_title": "深度巴西阿根廷 品味南美",
+            "product_id": "6c09b21e2add4d5da9213f9359ae9ab5",
+            "routing_data": 14,
+            "out_time": "按需定制",
+            "routing_nigth": 11,
+            "product_type": 1,
+            "country": "巴西,阿根廷"
+        },
+        {
+            "collection_num": 4,
+            "seller_user_name": "修罗",
+            "amount": 48564,
+            "pro_pic_url": "https://pic.51houniao.com/02666edff28c4b0798968c4ba9ea5800.jpg",
+            "pro_title": "和你一起 相遇索尼娃贾妮",
+            "product_id": "a106a5f79f674b668965da196b1175c4",
+            "routing_data": 6,
+            "out_time": "按需定制",
+            "routing_nigth": 4,
+            "product_type": 1,
+            "country": "马尔代夫"
+        },
+        {
+            "collection_num": 5,
+            "seller_user_name": "修罗",
+            "amount": 48149,
+            "pro_pic_url": "https://pic.51houniao.com/85bddd0a887f44239b9459ae0f67578e.jpg",
+            "pro_title": "肯尼亚坦桑，马拉河穿越环线",
+            "product_id": "aceb61498ff64bc0a05acd0d08ad956c",
+            "routing_data": 16,
+            "out_time": "2019-06-30",
+            "routing_nigth": 14,
+            "product_type": 1,
+            "country": "肯尼亚,坦桑尼亚"
+        }
+	]
+}

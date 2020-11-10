@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//创建父类
+			function Person(name,age,love){
+				this.name = name;
+				this.age = age;
+				this.love = love;
+				this.say = function (){
+					console.log("我的名字是："+this.name);
+				}
+				this.xihuan = function(){
+					console.log(this.name +"喜欢"+this.love);
+				}
+				
+			}
+			
+			
+			//创建子类
+			//学生子类
+			function Stu(name,age){
+				this.name = name;
+				this.age = age ;
+				//继承父类  ，call
+				Person.call(this,name,age);
+				
+				this.showAge = function(){
+					console.log("他的年龄是："+this.age);
+				}
+			}
+			//实例化子类
+			var s1 = new Stu("续航三","18");
+			s1.say();
+			s1.showAge();
+			
+			//老师子类
+			function Tea(name,love){
+				this.name = name;
+				this.love = love ;
+				//继承父类  ，apply
+				Person.apply(this,[name,25,love]);
+				
+			}
+			//实例化
+			var t1 = new Tea("花花","大山");
+			t1.say();
+			t1.xihuan();
+			
+			
+			// 继承的而其他方式： https://www.cnblogs.com/humin/p/4556820.html
+			/*
+			1.原型链继承
+			2.借用构造函数（经典继承）
+			3.组合继承
+			4.原型链继承
+			5.寄生式继承
+			6.寄生组合式继承
+			https://www.jianshu.com/p/85899e287694
+			*/
+		</script>
+	</body>
+</html>

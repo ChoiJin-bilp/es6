@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//原型：prototype  ,构造函数都有一个prototype的属性，这个属性叫做 原型对象，简称原型
+			//作用：对原有的类进行扩展方法和属性，进行继承
+			//创建新的类
+			function createDog(name,color){
+				this.name = name;
+				this.color = color;
+			}
+			
+			//实例化
+			var dog = new createDog("泰迪","棕色");
+			console.log(dog.name);
+			console.log(createDog.prototype);//只有 构造函数才有 prototype属性
+			console.log(dog.prototype);//普通的对象时没有 prototype属性的
+			
+			//但是，我们说，任何一个对象都有 __proto__属性
+			console.log(dog.__proto__);
+			//实例化对象的__proto__属性 指向 创建他的构造函数的 prototype属性
+			console.log( dog.__proto__ ==  createDog.prototype);//true
+			
+			console.log(createDog.prototype.__proto__  == Object.prototype);//true
+			
+			console.log(Object.prototype.__proto__  == null);//true
+			
+			//总结：因为所有对象都有 __proto__属性，所以，我们可以通过 __proto__属性访问到他的父级对象，可以使用父级对象的属性和方法，
+			//这种链式结构我们叫做 原型链
+			//作用：可以用于继承，或者访问父级的方法和属性
+		</script>
+		
+	</body>
+</html>

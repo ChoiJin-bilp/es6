@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//1.指数运算符 **
+			//es5 求指数
+			console.log(Math.pow(2,3));
+			//es6
+			console.log(2**3);
+			//2.数组方法 includes 在数组中是否包含这个元素
+			let arr = [1,2,3,4,6,7,8];
+			if(arr.includes(4)){
+				console.log("包含");
+			}else{
+				console.log("不包含");
+				console.log(arr.includes(6))
+			}
+			//includes还可以判断字符串中是否有该变量
+			let str = '1,2,3,4';
+			if(str.includes(3)){
+				console.log("包含");
+			}else{
+				console.log("不包含");
+			}
+
+			
+			//3.Object.values  获取对象中的所有value值  
+			//Object.keys 获取对象中所有 key值
+			var obj = {"name":"lili" ,"age":18};
+			console.log(Object.values(obj));
+			console.log(Object.keys(obj));
+
+			//4.padStart  可以使用*补足字符串不足的位数，在字符串前补足 
+			console.log('hi'.padStart(10,'*'));  
+			//5.padEnd     可以使用*补足字符串不足的位数，在字符串后补足
+			console.log('hi'.padEnd(10,'&'));   
+			
+			//6.trimStart  去左边空格 trimEnd 去右边空格
+			console.log("          hhh             ".trimStart());
+			console.log("          hhh             ".trimEnd());
+		</script>
+	</body>
+</html>

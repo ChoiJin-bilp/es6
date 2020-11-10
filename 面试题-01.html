@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// promise面试题
+		// promise面试题
+		function getDate(){
+			// promise参数是函数
+			let p = new Promise(function(resolve,reject){
+				resolve("成功1");
+				// 状态改变之后，所以下面不会执行
+				reject("失败1");
+				resolve("成功2");
+			})
+			return p;
+		}
+		getDate().then(function(res1){
+			console.log(res1)
+		}).catch(function(err){
+			console.log(err)
+		})
+	</script>
+</html>

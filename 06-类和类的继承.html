@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//es6 类
+			//一.类
+			//1.声明一个类 ,定义一个类
+			//class： 就是类的关键字   Animal： 类的名称（可以自己起）
+			class Animal{
+				//构造函数，可以给类里面的变量进行初始化操作，构造函数在实例化时会自动调用
+				constructor(arg) {
+				    this.type = 'animal';
+				}
+				//类里面的方法
+				say(name){
+					console.log(this.type + "says:"+ name);
+				}
+				swimming(){
+					console.log(this.type + "在游泳");
+				}
+			}
+			
+			
+			//2.实例化这个类
+			let animal1 = new Animal();
+			//调用类里面的方法
+			animal1.say('汪汪汪');
+			
+			//二.类的继承
+			//extends 继承
+			class Dog extends Animal{
+				constructor(arg) {
+					super();//子类没有自己的this，需要使用父类的this，super的作用就是继承了父类的this指向
+				    this.type = 'dog';
+				}
+				
+				//子类可以有自己的方法
+				eat(){
+					console.log(this.type + "在吃肉骨头");
+				}
+				
+				//如果子类中的函数名和父类中的函数名重名，会怎样
+				//子类中的方法重写了父类的方法
+				swimming(){
+					console.log(this.type + "不会游泳");
+				}
+				
+			}
+			
+			//实例化Dog类
+			let dog1 = new Dog();
+			dog1.say('喵喵');
+			dog1.eat();
+			dog1.swimming();
+			
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		#list{width: 600px; min-height: 100px; border:2px dotted blue;}
+	</style>
+</head>
+<body>
+	<h2>旅游景点列表 一共有三页，按顺序显示</h2>
+	<ul id="list">
+		
+		
+		
+	</ul>
+	
+	<script src="./js/jquery.min.js"></script>
+	
+	<script type="text/javascript">
+		//相当于 window.onload ,但是 比window.onload要快， 因为$(function(){}) 只需要document加载就可以运行里面的代码了
+		$(function(){
+			let skt = JSON.stringify("个人文件")
+			//获取数据
+			$.ajax({
+				type:'get',//获取数据的方式 get   post
+				data:'',//传到后台的参数
+				url:'./json/01.json',//获取的后台地址
+				async:true,//是否是异步调用 true 异步
+				success:function(res){//成功的回调函数
+					console.log(res);
+				},
+				error:function(e){//失败的回调函数
+					console.log(e);
+				}
+			})
+			var VSCODE_CORS_URL = {
+				key: "http://localhost:1337",
+				proxy: "http://www.lofter.com"
+				};
+				$.ajax({
+				type: "get",
+				url:"http://localhost:1337/trade/reward/isOpen?VSCODE_CORS=" +JSON.stringify(VSCODE_CORS_URL),
+				success: function(res) {
+					console.log(res);
+				}
+				});
+
+			//get  
+			$.get('./json/01.jso);n',function(res){
+				console.log(res
+			})
+			
+			//post  
+			// $.post('./json/01.json',function(res){
+			// 	console.log(res);
+			// })
+			
+			//getJSON
+			$.getJSON("./json/01.json",function(res){
+				console.log(res);
+			})
+		})
+	</script>
+	
+</body>
+</html>

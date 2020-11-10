@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript">
+	function chiji(){
+		return new Promise((resolve)=>{
+		setTimeout(function(){
+			console.log("上盘吃鸡");
+			resolve();
+		},2000);
+		})
+	}
+	function getObj(page){
+		return new Promise(function(resolve,reject){
+			$.getJSON("./json/0"+page+".json",function(res){
+				console.log(11);
+				document.write(res.matchedProducts[0].collection_num);
+				resolve();
+			})
+		});
+	}
+	async function task(){
+		await chiji();
+		await getObj(1);
+		await getObj(2);
+		await getObj(3);
+		// await getObj(3);
+	}
+	
+	task();
+	
+</script>
